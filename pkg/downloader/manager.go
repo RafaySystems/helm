@@ -315,7 +315,7 @@ func (m *Manager) downloadAll(deps []*chart.Dependency) error {
 
 		// Any failure to resolve/download a chart should fail:
 		// https://github.com/helm/helm/issues/1439
-		churl, username, password, insecureSkipTLSVerify, passCredentialsAll, caFile, certFile, keyFile, err := m.findChartURL(dep.Name, dep.Version, dep.Repository, repos)
+		churl, username, password, _, passCredentialsAll, caFile, certFile, keyFile, err := m.findChartURL(dep.Name, dep.Version, dep.Repository, repos)
 		if err != nil {
 			saveError = fmt.Errorf("could not find %s: %w", churl, err)
 			break
@@ -340,7 +340,6 @@ func (m *Manager) downloadAll(deps []*chart.Dependency) error {
 			Options: []getter.Option{
 				getter.WithBasicAuth(username, password),
 				getter.WithPassCredentialsAll(passCredentialsAll),
-				getter.WithInsecureSkipVerifyTLS(insecureSkipTLSVerify),
 				getter.WithTLSClientConfig(certFile, keyFile, caFile),
 			},
 		}

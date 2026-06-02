@@ -915,7 +915,6 @@ func (c *ChartPathOptions) LocateChart(name string, settings *cli.EnvSettings) (
 		Options: []getter.Option{
 			getter.WithPassCredentialsAll(c.PassCredentialsAll),
 			getter.WithTLSClientConfig(c.CertFile, c.KeyFile, c.CaFile),
-			getter.WithInsecureSkipVerifyTLS(c.InsecureSkipTLSVerify),
 			getter.WithPlainHTTP(c.PlainHTTP),
 			getter.WithBasicAuth(c.Username, c.Password),
 		},
